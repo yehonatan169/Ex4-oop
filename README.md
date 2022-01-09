@@ -127,4 +127,8 @@ the frameGUI is being made from 2 panels - PanelGUI which displayes the game its
 and the panelDataGUI - which displays in real time the game data, such as time, score and number of moves.
 the 2 panels work independantly from each other, for best performence.
 
+<img width="960" alt="graph1" src="https://user-images.githubusercontent.com/47754727/148702251-2817dd0f-a06e-4e2b-b0db-16df5e9c392d.png">
+in the attached photo you can see the agent - marked as the red dot, chasing the pokimon which is the blue dot.
+
+
 with all the classes working together - the user can enjoy seeing his agents catch them all.
