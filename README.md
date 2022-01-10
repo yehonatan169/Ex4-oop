@@ -134,10 +134,11 @@ in the attached photo you can see the agent - marked as the red dot, chasing the
 with all the classes working together - the user can enjoy seeing his agents catch them all.
 <img width="960" alt="graph2" src="https://user-images.githubusercontent.com/47754727/148702312-9bc70c54-b550-4270-81de-3be7613b3067.png">
 
-
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/76455181/148759553-9cd17522-75c2-424c-a0ea-80532f16447c.gif)
 
+# UML
 
+![UML](https://user-images.githubusercontent.com/76455181/148770956-eac2f19a-02e6-43f6-ba01-e8939f1fb587.jpeg)
 
 
 
