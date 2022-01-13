@@ -1,11 +1,14 @@
 package ex4_java_client.MainClasses;
 
+import ex4_java_client.Pokemon;
 import ex4_java_client.api.DirectedWeightedGraph;
 import ex4_java_client.api.DirectedWeightedGraphAlgorithms;
 import ex4_java_client.api.EdgeData;
 import ex4_java_client.api.NodeData;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+//import org.json.JSONArray;
+//import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
@@ -518,31 +521,28 @@ public class DWGA implements DirectedWeightedGraphAlgorithms {
     public boolean load(String file) {
         try {
             directeweightedgraph loadGraph = new directeweightedgraph();
-            JSONParser jsonparser = new JSONParser();
-            Object objfile = jsonparser.parse(new FileReader(file));
-            JSONObject jfile = (JSONObject) objfile;
-            //////reading the nodes
-            JSONArray nodes = (JSONArray) jfile.get("Nodes");
-            Iterator i = nodes.iterator();
-            while (i.hasNext()) {
-                HashMap<String, Object> datanode = (HashMap<String, Object>) i.next();
-                String pos = (String) datanode.get("pos");
-                int key = (int) (long) (datanode.get("id"));
+            org.json.JSONObject format = new org.json.JSONObject(file);
+
+            org.json.JSONArray nodes = format.getJSONArray("Nodes");
+
+            for(int i = 0; i < nodes.length(); i++) {
+                org.json.JSONObject t = (org.json.JSONObject) nodes.get(i);
+                String pos = t.getString("pos");
                 String[] geoloc = pos.split(",");
                 geolocation loc = new geolocation(Double.parseDouble(geoloc[0]), Double.parseDouble(geoloc[1])
                         , Double.parseDouble(geoloc[2]));
-                Vertex node = new Vertex(key, loc);
-                loadGraph.addNode(node);
+                int id = t.getInt("id");
+                Vertex n = new Vertex(id,loc);
+                loadGraph.addNode(n);
             }
 
-            ///////reading the edges
-            JSONArray edges = (JSONArray) jfile.get("Edges");
-            i = edges.iterator();
-            while (i.hasNext()) {
-                HashMap<String, Object> dataedge = (HashMap<String, Object>) i.next();
-                int src = (int) (long) dataedge.get("src");
-                int dest = (int) (long) dataedge.get("dest");
-                double w = (double) dataedge.get("w");
+            org.json.JSONArray edges = format.getJSONArray("Edges");
+            //////reading the edges
+            for(int i = 0; i < edges.length(); i++) {
+                org.json.JSONObject t = (org.json.JSONObject) edges.get(i);
+                int src = t.getInt("src");
+                double w = t.getDouble("w");
+                int dest = t.getInt("dest");
                 loadGraph.connect(src, dest, w);
             }
             this.init(loadGraph);
