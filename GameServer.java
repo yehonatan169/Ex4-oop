@@ -91,11 +91,9 @@ public class GameServer {
     }
 
     private void GraphInit(){
-        fileWriter w = new fileWriter();
         String graphStr = c.getGraph();
-        w.write(graphStr, "data2/graphToLoad.json");
         this.g_algo = new DWGA();
-        this.g_algo.load("data2/graphToLoad.json");
+        this.g_algo.load(graphStr);
         g =(directeweightedgraph) this.g_algo.getGraph();
     }
 
